@@ -25,6 +25,7 @@ Related Bugs
 
 Oracle MySQL:
 * http://bugs.mysql.com/bug.php?id=77781
+* http://bugs.mysql.com/bug.php?id=77622
 
 MariaDB:
 * https://mariadb.atlassian.net/browse/MDEV-7481
