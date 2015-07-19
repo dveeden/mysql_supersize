@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import time
 import sys
+import os
+
+os.environ['LD_LIBRARY_PATH'] = '/opt/mysql/5.6.25/lib' # Needed for CEXT
 import mysql.connector
 
 from math import log
@@ -28,9 +31,21 @@ def insert_data(x):
            round(runtime,2), round(runtime_per_mb,2), round(rollbacktime,2)))
 
 if __name__ == "__main__":
-    c = mysql.connector.connect(host='::1',port=5625,user='msandbox',
-                                password='msandbox',database='test')
-    cur = c.cursor(prepared=True)
+    dbconfig = {
+        'host': '::1',
+        'port': 5625,
+        'user': 'msandbox',
+        'password': 'msandbox',
+        'database': 'test'
+    }
+    if mysql.connector.__version_info__ > (2, 1) and mysql.connector.HAVE_CEXT:
+        print('Using CAPI')
+        dbconfig['use_pure'] = False
+    c = mysql.connector.connect(**dbconfig)
+    try:
+        cur = c.cursor(prepared=True)
+    except NotImplementedError:
+        cur = c.cursor()
     cur.execute('DROP TABLE IF EXISTS supersize')
     cur.execute('''CREATE TABLE supersize(
 id int unsigned auto_increment primary key,
