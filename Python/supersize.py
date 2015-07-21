@@ -33,7 +33,7 @@ def insert_data(x):
 if __name__ == "__main__":
     dbconfig = {
         'host': '::1',
-        'port': 5625,
+        'port': 5610,
         'user': 'msandbox',
         'password': 'msandbox',
         'database': 'test'

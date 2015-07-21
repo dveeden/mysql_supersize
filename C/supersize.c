@@ -11,7 +11,7 @@ main (int argc, char *argv[])
   static char *opt_hostname = "::1";
   static char *opt_username = "msandbox";
   static char *opt_password = "msandbox";
-  static unsigned int opt_portnr = 5610;
+  static unsigned int opt_portnr = 18675;
   static char *opt_sockname = NULL;
   static char *opt_database = "test";
   static unsigned int opt_flags = 0; 
